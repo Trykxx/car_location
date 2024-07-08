@@ -4,10 +4,8 @@
 require_once '../src/Core/Autoloader.php';
 
 use App\Core\Autoloader;
+use App\Core\Router;
 
 Autoloader::autoload();
 
-use App\Entity\Test;
-
-$test = new Test();
-echo $test->display();
+$router = new Router();
