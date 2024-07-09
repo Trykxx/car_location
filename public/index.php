@@ -8,8 +8,12 @@ require_once '../config/env.php';
 
 use App\Core\Autoloader;
 use App\Core\Router;
+use App\Core\Database;
 
 Autoloader::autoload();
+Database::iniConnection(); // cree la variable $connection
+
+$pdo = Database::getConnection();
 
 $router = new Router();
 $router->execute();

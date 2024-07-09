@@ -25,4 +25,15 @@ INSERT INTO car (modele, description, prix, img_path) VALUES
 ('Porsche 911', 'Voiture de sport de luxe avec une performance exceptionnelle et un design emblématique.', 299.99, 'Porsche_911.jpg'),
 ('Lamborghini Aventador', 'Supercar italienne avec un moteur V12 et des performances de pointe.', 999.00, 'Lamborghini_Aventador.jpg');
 
+CREATE table user(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    pseudo VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    mot_de_passe VARCHAR(255) NOT NULL,
+    statut BOOLEAN DEFAULT FALSE
+);
+
+INSERT INTO user (pseudo, email, mot_de_passe, statut) VALUES ('admin', 'admin@gmail.com', '123456', TRUE),('user', 'user@gmail.com', '123456', FALSE) ;
+
+
 ```

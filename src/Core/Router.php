@@ -15,9 +15,6 @@ class Router
     private array $routes;
 
     private $currentController;
-    private $reservationController;
-    private $contactController;
-    private $loginController;
 
     public function __construct()
     {
@@ -27,18 +24,23 @@ class Router
         });
 
         $this->add_route('/reservation/{id}', function ($param) {
-            $this->reservationController = new CarController();
-            $this->reservationController->showReservationDetails($param);
+            $this->currentController = new CarController();
+            $this->currentController->showReservationDetails($param);
         });
 
         $this->add_route('/contact', function () {
-            $this->contactController = new ContactController();
-            $this->contactController->showContactForm();
+            $this->currentController = new ContactController();
+            $this->currentController->showContactForm();
         });
 
         $this->add_route('/connexion', function () {
-            $this->loginController = new LoginController();
-            $this->loginController->showLoginForm();
+            $this->currentController = new LoginController();
+            $this->currentController->showLoginForm();
+        });
+
+        $this->add_route('/connecter', function () {
+            $this->currentController = new LoginController();
+            $this->currentController->processLogin();
         });
 
         $this->add_route('/contactez-nous', function () {

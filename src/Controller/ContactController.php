@@ -8,6 +8,6 @@ class ContactController extends AbstractController
 {
     public function showContactForm():void
     {
-        $this->render('connexion');
+        $this->render('contact');
     }
 }
