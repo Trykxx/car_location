@@ -5,6 +5,7 @@ namespace App\Core;
 use App\Controller\HomeController;
 use App\Controller\CarController;
 use App\Controller\ContactController;
+use App\Controller\LoginController;
 
 class Router
 {
@@ -16,6 +17,7 @@ class Router
     private $currentController;
     private $reservationController;
     private $contactController;
+    private $loginController;
 
     public function __construct()
     {
@@ -32,6 +34,11 @@ class Router
         $this->add_route('/contact', function () {
             $this->contactController = new ContactController();
             $this->contactController->showContactForm();
+        });
+
+        $this->add_route('/connexion', function () {
+            $this->loginController = new LoginController();
+            $this->loginController->showLoginForm();
         });
 
         $this->add_route('/contactez-nous', function () {

@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use App\Controller\AbstractController;
 
-class ContactController extends AbstractController
+class LoginController extends AbstractController
 {
-    public function showContactForm():void
+    public function showLoginForm():void
     {
         $this->render('connexion');
     }
