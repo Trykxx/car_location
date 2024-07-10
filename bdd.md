@@ -34,6 +34,4 @@ CREATE table user(
 );
 
 INSERT INTO user (pseudo, email, mot_de_passe, statut) VALUES ('admin', 'admin@gmail.com', '123456', TRUE),('user', 'user@gmail.com', '123456', FALSE) ;
-
-
 ```

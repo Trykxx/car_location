@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Controller\AbstractController;
+use App\Core\Session;
+use App\Repository\UserRepository;
 
 class LoginController extends AbstractController
 {
@@ -14,28 +16,38 @@ class LoginController extends AbstractController
     public function processLogin()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $session = new Session();
             if (
                 !isset($_POST['email']) ||
                 !isset($_POST['mdp']) ||
                 empty($_POST['email']) ||
                 empty($_POST['mdp'])
             ) {
-                echo 'Données incorrectes';
-
+                $session->setFlashMessage('Veuillez remplir tous les champs', 'danger');
+                header("Location:" . SITE_NAME . '/connexion');
+                exit;
             } else {
-                $email = $_POST['email'];
-                $password = $_POST['mdp'];
+                $email = trim($_POST['email']);
+                $password = trim($_POST['mdp']);
 
-                $email = trim($email);
-                $password = trim($password);
+                $userRpository = new UserRepository();
+                $user = $userRpository->getUserByEmail($email);
 
-                $password_hache = password_hash($password, PASSWORD_DEFAULT);
+                if (!$user || $user['mot_de_passe'] !== $password) {
+                    $session->setFlashMessage('Email ou mot de passe incorrect', 'danger');
+                    header("Location:" . SITE_NAME . '/connexion');
+                    exit;
+                }
 
-                echo 'Connexion réussie!';
-                // header('Location: ');
+                if ($user && $user['mot_de_passe'] == $password) {
+                    $session->setFlashMessage('Vous etes connecté', 'success');
+                    header("Location:" . SITE_NAME . '/connexion');
+                    exit;
+                }
             }
         } else {
-            // $_SESSION['message'] = 'Mauvaise méthode de requête';
+            header("Location:" . SITE_NAME . '/connexion');
+            exit;
         }
     }
 }
