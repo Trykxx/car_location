@@ -35,7 +35,7 @@ class UserRepository extends AbstractRepository
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
-    public function updateUser($id,$pseudo):array | bool
+    public function updateUser($id,$pseudo)
     {
         $stmt = $this->pdo->prepare("UPDATE user SET pseudo = :pseudo WHERE id = :id");
 
@@ -43,6 +43,5 @@ class UserRepository extends AbstractRepository
         $stmt->bindParam(':id', $pseudo);
 
         $stmt->execute();
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 }
