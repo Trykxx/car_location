@@ -2,10 +2,12 @@
 
 namespace App\Core;
 
-use App\Controller\HomeController;
-use App\Controller\CarController;
-use App\Controller\ContactController;
-use App\Controller\LoginController;
+use App\Controller\Front\HomeController;
+use App\Controller\Front\CarController;
+use App\Controller\Front\ContactController;
+use App\Controller\Front\LoginController;
+use App\Controller\Admin\AdminController;
+use App\Controller\Admin\AdminUserController;
 
 class Router
 {
@@ -33,7 +35,7 @@ class Router
             $this->currentController->showContactForm();
         });
 
-        $this->add_route('/connexion', function () {
+        $this->add_route('/admin/connexion', function () {
             $this->currentController = new LoginController();
             $this->currentController->showLoginForm();
         });
@@ -41,6 +43,17 @@ class Router
         $this->add_route('/connecter', function () {
             $this->currentController = new LoginController();
             $this->currentController->processLogin();
+        });
+
+        $this->add_route('/admin/dashboard', function () {
+            $this->currentController = new AdminController();
+            $this->currentController->index();
+        });
+
+        $this->add_route('/admin/dashboard-users', function () {
+            $this->currentController = new AdminUserController();
+            $this->currentController->index();
+
         });
 
         $this->add_route('/contactez-nous', function () {
@@ -73,8 +86,6 @@ class Router
                 return;
             }
         }
-        header('Location: ../templates/error-404.php');
-        exit();
         require_once '../templates/error-404.php';
     }
 }

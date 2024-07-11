@@ -15,4 +15,12 @@ class UserRepository extends AbstractRepository
         $stmt->execute();
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
+
+    public function getAllUsers():array | bool
+    {
+        $stmt = $this->pdo->query("SELECT * FROM USER");
+
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

@@ -25,7 +25,7 @@ $email = isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : '';
         <nav>
             <a href="<?= SITE_NAME; ?>/">Accueil</a>
             <a href="<?= SITE_NAME; ?>/contact">Contact</a>
-            <a href="<?= SITE_NAME; ?>/connexion">Connexion</a>
+            <a href="<?= SITE_NAME; ?>/admin/connexion">Connexion</a>
         </nav>
     </header>
 

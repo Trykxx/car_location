@@ -1,6 +1,6 @@
 <main>
     <h1>Connectez-vous</h1>
-    <form action="/car-rent/connecter" method="POST">
+    <form action="<?= SITE_NAME ?>/connecter" method="POST">
         <div>
             <label for="email">Email :</label>
             <input type="email" id="email" name="email">

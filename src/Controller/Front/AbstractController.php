@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Front;
 
 abstract class AbstractController
 {
@@ -12,6 +12,6 @@ abstract class AbstractController
         require_once DIR_PATH . "/templates/{$path}.php";
         $content = ob_get_clean();
 
-        require_once DIR_PATH . '/templates/base.php';
+        require_once DIR_PATH . '/templates/front/base.php';
     }
 }

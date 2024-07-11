@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Front;
 
-use App\Controller\AbstractController;
+use App\Controller\Front\AbstractController;
 use App\Core\Session;
 use App\Repository\UserRepository;
 
@@ -10,7 +10,7 @@ class LoginController extends AbstractController
 {
     public function showLoginForm(): void
     {
-        $this->render('connexion');
+        $this->render('/front/connexion');
     }
 
     public function processLogin()
@@ -24,7 +24,7 @@ class LoginController extends AbstractController
                 empty($_POST['mdp'])
             ) {
                 $session->setFlashMessage('Veuillez remplir tous les champs', 'danger');
-                header("Location:" . SITE_NAME . '/connexion');
+                header("Location:" . SITE_NAME . '/admin/connexion');
                 exit;
             } else {
                 $email = trim($_POST['email']);
@@ -35,18 +35,18 @@ class LoginController extends AbstractController
 
                 if (!$user || $user['mot_de_passe'] !== $password) {
                     $session->setFlashMessage('Email ou mot de passe incorrect', 'danger');
-                    header("Location:" . SITE_NAME . '/connexion');
+                    header("Location:" . SITE_NAME . '/admin/connexion');
                     exit;
                 }
 
                 if ($user && $user['mot_de_passe'] == $password) {
                     $session->setFlashMessage('Vous etes connecté', 'success');
-                    header("Location:" . SITE_NAME . '/connexion');
+                    header("Location:" . SITE_NAME . '/admin/connexion');
                     exit;
                 }
             }
         } else {
-            header("Location:" . SITE_NAME . '/connexion');
+            header("Location:" . SITE_NAME . '/admin/connexion');
             exit;
         }
     }
