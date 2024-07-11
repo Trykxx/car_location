@@ -53,7 +53,21 @@ class Router
         $this->add_route('/admin/dashboard-users', function () {
             $this->currentController = new AdminUserController();
             $this->currentController->index();
+        });
 
+        $this->add_route('/dashboard/user/modifier/{id}', function ($param) {
+            $this->currentController = new AdminUserController();
+            $this->currentController->showUserUpdateForm($param);
+        });
+
+        $this->add_route('/modifier', function () {
+            $this->currentController = new AdminUserController();
+            $this->currentController->processUpdate();
+        });
+
+        $this->add_route('/dashboard/user/modifier', function () {
+            $this->currentController = new AdminUserController();
+            $this->currentController->userUpdate();
         });
 
         $this->add_route('/contactez-nous', function () {

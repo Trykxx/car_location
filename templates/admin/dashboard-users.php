@@ -16,7 +16,7 @@
                     <td><?= $user['pseudo'] ?></td>
                     <td><?= $user['email'] ?></td>
                     <td><?= $user['statut']? 'admin' : 'user'; ?></td>
-                    <td><a class="btn btn-primary" href="">Modifier</a></td>
+                    <td><a class="btn btn-primary" href="<?= SITE_NAME ?>/dashboard/user/modifier/<?=$user['id']?>">Modifier</a></td>
                     <td><a class="btn btn-danger" href="">Supprimer</a></td>
                 </tr>
             <?php }
