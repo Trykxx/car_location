@@ -26,15 +26,13 @@ class AdminUserController extends AbstractAdminController
         $this->render('user-update-form', ['user' => $user]);
     }
 
-    public function userUpdate()
-    {
-        $this->render('user-update-form');
-    }
-
     public function processUpdate()
     {
+        $session = new Session();
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $session = new Session();
+
+
             if (
                 !isset($_POST['newPseudo']) ||
                 empty($_POST['newPseudo'])
